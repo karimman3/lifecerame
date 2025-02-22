@@ -1,65 +1,49 @@
-<!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html><html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صورة وأزرار</title>
+    <title>طلب اشتراك في الفايبر أو ADSL</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
-        }
-
-        .container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .image {
-            width: 100%;
-            height: auto;
-        }
-
-        .button-group {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column; /* جعل الأزرار طبقات */
-            gap: 15px; /* مسافة بين الأزرار */
-        }
-
-        .button-group button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            width: 100%; /* جعل الزر بعرض الحاوية */
-            max-width: 300px; /* أقصى عرض للأزرار */
-        }
-
-        .button-group button:hover {
-            background-color: #218838;
-        }
+        body { font-family: Arial, sans-serif; direction: rtl; text-align: right; margin: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: #f9f9f9; }
+        label { font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background: orange; border: none; color: white; font-size: 16px; cursor: pointer; }
+        button:hover { background: darkorange; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img src="your-image.jpg" alt="صورة" class="image">
-        <div class="button-group">
-            <button onclick="window.location.href='https://www.example1.com';">الذهاب إلى رابط 1</button>
-            <button onclick="window.location.href='https://www.example2.com';">الذهاب إلى رابط 2</button>
-            <button onclick="window.location.href='https://www.example3.com';">الذهاب إلى رابط 3</button>
-            <button onclick="window.location.href='https://wa.me/your-number';">اتصل عبر واتساب</button>
-        </div>
-    </div>
+        <h2>طلب اشتراك في الفايبر أو ADSL</h2>
+        <form id="signupForm">
+            <label for="name">الاسم الكامل:</label>
+            <input type="text" id="name" required><label for="phone">رقم الهاتف:</label>
+        <input type="tel" id="phone" required>
+        
+        <label for="address">العنوان:</label>
+        <input type="text" id="address" required>
+        
+        <label for="type">نوع الاشتراك:</label>
+        <select id="type" required>
+            <option value="fiber">فايبر أوبتيك</option>
+            <option value="adsl">ADSL</option>
+        </select>
+        
+        <label for="idCard">رفع البطاقة الوطنية أو فاتورة الكهرباء:</label>
+        <input type="file" id="idCard" accept="image/*,application/pdf" required>
+        
+        <button type="submit">إرسال الطلب</button>
+    </form>
+    <p id="message"></p>
+</div>
+
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        document.getElementById("message").innerText = "تم إرسال الطلب بنجاح! سنقوم بالتواصل معك قريبًا.";
+        this.reset();
+    });
+</script>
 
 </body>
 </html>
