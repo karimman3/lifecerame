@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar">
+<!DOCTYPE html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,37 +14,52 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <h2>طلب اشتراك في الفايبر أو ADSL</h2>
         <form id="signupForm">
             <label for="name">الاسم الكامل:</label>
-            <input type="text" id="name" required><label for="phone">رقم الهاتف:</label>
-        <input type="tel" id="phone" required>
-        
-        <label for="address">العنوان:</label>
-        <input type="text" id="address" required>
-        
-        <label for="type">نوع الاشتراك:</label>
-        <select id="type" required>
-            <option value="fiber">فايبر أوبتيك</option>
-            <option value="adsl">ADSL</option>
-        </select>
-        
-        <label for="idCard">رفع البطاقة الوطنية أو فاتورة الكهرباء:</label>
-        <input type="file" id="idCard" accept="image/*,application/pdf" required>
-        
-        <button type="submit">إرسال الطلب</button>
-    </form>
-    <p id="message"></p>
-</div>
+            <input type="text" id="name" required>
 
-<script>
-    document.getElementById("signupForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        document.getElementById("message").innerText = "تم إرسال الطلب بنجاح! سنقوم بالتواصل معك قريبًا.";
-        this.reset();
-    });
-</script>
+            <label for="phone">رقم الهاتف:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="address">العنوان:</label>
+            <input type="text" id="address" required>
+
+            <label for="type">نوع الاشتراك:</label>
+            <select id="type" required>
+                <option value="fiber">فايبر أوبتيك</option>
+                <option value="adsl">ADSL</option>
+            </select>
+
+            <button type="submit">إرسال الطلب</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // جلب البيانات المدخلة من المستخدم
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var address = document.getElementById("address").value;
+            var type = document.getElementById("type").value === "fiber" ? "فايبر أوبتيك" : "ADSL";
+
+            // رقم الواتساب المستهدف (بدون صفر في البداية)
+            var whatsappNumber = "212660201206";
+
+            // إنشاء نص الرسالة
+            var message = `طلب اشتراك جديد:\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالعنوان: ${address}\nنوع الاشتراك: ${type}`;
+
+            // تحويل النص إلى رابط واتساب
+            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // توجيه المستخدم إلى واتساب
+            window.location.href = whatsappURL;
+        });
+    </script>
 
 </body>
 </html>
